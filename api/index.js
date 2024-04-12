@@ -1,6 +1,7 @@
 import express from "express";
 import connectDB from "./db/index.js";
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.route.js";
 
 dotenv.config();
 const app = express();
@@ -14,3 +15,5 @@ connectDB()
   .catch((err) => {
     console.log("MongoDB connection failed: ", err);
   });
+
+app.use("/api/user", userRoutes);
