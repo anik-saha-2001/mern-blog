@@ -46,7 +46,10 @@ export const signInUser = async (req, res, next) => {
       return next(errorHandler(404, "Incorrect Password"));
     }
 
-    const token = jwt.sign({ id: validUser._id }, process.env.JWT_SECRET);
+    const token = jwt.sign(
+      { id: validUser._id, isAdmin: validUser.isAdmin },
+      process.env.JWT_SECRET
+    );
 
     const { password: pass, ...rest } = validUser._doc;
 
@@ -71,6 +74,7 @@ export const google = async (req, res, next) => {
       const token = jwt.sign(
         {
           id: user._id,
+          isAdmin: user.isAdmin,
         },
         process.env.JWT_SECRET
       );
@@ -89,7 +93,7 @@ export const google = async (req, res, next) => {
         Math.random().toString(36).slice(-8);
 
       const hashedPassword = bcryptjs.hashSync(generatedPassword, 10);
-      
+
       const newUser = new User({
         username:
           name.toLowerCase().split(" ").join("") +
@@ -104,6 +108,7 @@ export const google = async (req, res, next) => {
       const token = jwt.sign(
         {
           id: newUser._id,
+          isAdmin: newUser.isAdmin,
         },
         process.env.JWT_SECRET
       );
