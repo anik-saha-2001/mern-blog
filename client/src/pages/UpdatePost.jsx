@@ -1,4 +1,11 @@
-import { Alert, Button, FileInput, Select, TextInput } from "flowbite-react";
+import {
+  Alert,
+  Button,
+  FileInput,
+  Select,
+  TextInput,
+  Textarea,
+} from "flowbite-react";
 import { useEffect, useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
@@ -23,6 +30,8 @@ const UpdatePost = () => {
   const navigate = useNavigate();
   const { postId } = useParams();
   const { currentUser } = useSelector((state) => state.user);
+
+  console.log(formData);
 
   useEffect(() => {
     try {
@@ -181,15 +190,27 @@ const UpdatePost = () => {
           />
         )}
 
-        <ReactQuill
-          theme="snow"
+        {/*
+          <ReactQuill
+            theme="snow"
+            value={formData.content}
+            placeholder="Write text here..."
+            className="h-72 mb-12"
+            required
+            onChange={(value) => {
+              setFormData({ ...formData, content: value });
+            }}
+          />
+          */}
+
+        <Textarea
+          className="h-72 mb-12"
           value={formData.content}
           placeholder="Write text here..."
-          className="h-72 mb-12"
           required
-          onChange={(value) => {
-            setFormData({ ...formData, content: value });
-          }}
+          onChange={(e) =>
+            setFormData({ ...formData, content: e.target.value })
+          }
         />
 
         <Button type="submit" gradientDuoTone="purpleToPink">
