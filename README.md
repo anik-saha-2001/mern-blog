@@ -4,8 +4,8 @@ A cutting-edge blog web application built using the **MERN** stack, offering pow
 
 ## Features
 
-- **Frontend**: React, Tailwind CSS, React Router DOM
-- **Backend**: Node.js, Express, MongoDB
+- **Frontend**: React, Tailwind CSS, React Router DOM, Flowbite
+- **Backend**: Node.js, Express, MongoDB, Firebase(for image upload too)
 - **Authentication**: OAuth and JWT for robust, secure authentication
 - **State Management**: Powered by Redux Toolkit
 - **Admin & Client Pages**: Admins can manage posts, comments, users
